@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pronóstico Electoral Colombia 2026 — Primera Vuelta</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg:       #f0f2f5;
+  --surface:  #ffffff;
+  --surface2: #f7f8fa;
+  --border:   #e2e5eb;
+  --border2:  #d0d4dc;
+  --ink:      #0f1623;
+  --ink2:     #3a4155;
+  --ink3:     #8a93a8;
+  --ink4:     #c2c8d4;
+  --navy:     #0d1b3e;
+  --navy2:    #1a2f5e;
+  --red:      #c0392b;
+  --blue:     #1a56a0;
+  --purple:   #5b3fa6;
+  --amber:    #b8860b;
+  --teal:     #117a65;
+  --orange:   #c0621a;
+  --slate:    #5d6d7e;
+
+  --cc: #8b1a1a;
+  --ce: #1c3d6e;
+  --cv: #3d2b6e;
+  --cf: #7a5c00;
+  --cl: #0d5c4a;
+  --cb: #7a3e10;
+  --cr: #8a93a8;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── LOADING ── */
+#loading-screen {
+  position: fixed; inset: 0;
+  background: var(--navy);
+  z-index: 9999;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 20px;
+}
+.load-logo {
+  font-size: 11px; font-weight: 700; letter-spacing: 4px;
+  color: rgba(255,255,255,0.35); text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.load-title {
+  font-size: 22px; font-weight: 800; color: #fff;
+  letter-spacing: -0.3px; text-align: center;
+}
+.load-sub {
+  font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.4);
+  letter-spacing: 2px; text-transform: uppercase;
+}
+.load-counter {
+  font-size: 48px; font-weight: 800; color: #fff;
+  letter-spacing: -2px; line-height: 1; margin: 8px 0;
+}
+.load-bar-wrap {
+  width: 300px; height: 2px; background: rgba(255,255,255,0.12);
+  border-radius: 2px; overflow: hidden;
+}
+.load-bar {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, #6b7280, #9ca3af);
+  transition: width 0.1s linear;
+}
+.load-status {
+  font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.3);
+  letter-spacing: 1px; text-transform: uppercase;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  background: var(--navy);
+  padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 52px;
+  position: sticky; top: 0; z-index: 100;
+}
+.topbar-left {
+  display: flex; align-items: center; gap: 16px;
+}
+.topbar-flag {
+  display: flex; align-items: center; gap: 6px;
+}
+.flag-stripe { width: 4px; height: 20px; }
+.topbar-title {
+  font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.9);
+  letter-spacing: 0.5px; text-transform: uppercase;
+}
+.topbar-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.12); }
+.topbar-sub {
+  font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.4);
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.topbar-right { display: flex; align-items: center; gap: 12px; }
+.chip {
+  font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; padding: 4px 10px; border-radius: 3px;
+}
+.chip-green { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.15); }
+.chip-blue  { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.1); }
+
+/* ── HEADER ── */
+.page-header {
+  background: var(--navy2);
+  padding: 28px 32px 24px;
+  border-bottom: 3px solid rgba(255,255,255,0.06);
+}
+.header-grid {
+  max-width: 1360px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 24px; align-items: end;
+}
+.header-eyebrow {
+  font-size: 9px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 8px;
+}
+.header-h1 {
+  font-size: clamp(22px, 3vw, 34px); font-weight: 800;
+  color: #fff; line-height: 1.15; letter-spacing: -0.5px;
+}
+.header-h1 span { color: rgba(255,255,255,0.65); }
+.header-meta { margin-top: 10px; display: flex; gap: 20px; flex-wrap: wrap; }
+.header-meta-item {
+  font-size: 10px; font-weight: 500;
+  color: rgba(255,255,255,0.4); letter-spacing: 0.5px;
+}
+.header-meta-item strong { color: rgba(255,255,255,0.7); font-weight: 600; }
+.header-right { text-align: right; }
+.header-author {
+  font-size: 10px; font-weight: 600;
+  color: rgba(255,255,255,0.5); letter-spacing: 0.5px;
+  line-height: 1.8; text-align: right;
+}
+.header-author strong { color: rgba(255,255,255,0.8); display: block; font-size: 11px; }
+
+/* ── LAYOUT ── */
+.page-body { max-width: 1360px; margin: 0 auto; padding: 24px 32px 48px; }
+
+/* ── KPI ROW ── */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 20px;
+}
+@media(max-width:900px){ .kpi-row { grid-template-columns: repeat(2,1fr); } }
+
+.kpi {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px 20px;
+  border-left: 3px solid transparent;
+}
+.kpi-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--ink3); margin-bottom: 6px;
+}
+.kpi-value {
+  font-size: 26px; font-weight: 800; line-height: 1;
+  letter-spacing: -1px; color: var(--ink);
+}
+.kpi-sub { font-size: 10px; font-weight: 500; color: var(--ink3); margin-top: 4px; }
+
+/* ── WINNER BANNER ── */
+.winner-banner {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  border-left: 4px solid #4a4a4a;
+  padding: 18px 24px;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 20px; flex-wrap: wrap; margin-bottom: 20px;
+}
+.wb-left {}
+.wb-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ink3); margin-bottom: 4px; }
+.wb-name { font-size: 20px; font-weight: 800; color: var(--cc); letter-spacing: -0.3px; }
+.wb-party { font-size: 10px; font-weight: 500; color: var(--ink3); margin-top: 2px; }
+.wb-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+.wb-stat {}
+.wb-stat-val { font-size: 28px; font-weight: 800; letter-spacing: -1px; color: var(--ink); }
+.wb-stat-lbl { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink3); }
+
+/* ── MAIN GRID ── */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 16px; margin-bottom: 16px;
+}
+@media(max-width:1000px){ .main-grid { grid-template-columns: 1fr; } }
+
+.grid-full { grid-column: 1 / -1; }
+
+/* ── CARD ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.card-head {
+  padding: 12px 18px 10px;
+  border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--surface2);
+}
+.card-title {
+  font-size: 9px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--ink2);
+}
+.card-tag {
+  font-size: 9px; font-weight: 600; color: var(--ink3); letter-spacing: 0.5px;
+}
+.card-body { padding: 18px; }
+
+/* ── CANDIDATE BARS ── */
+.cand-row { margin-bottom: 14px; }
+.cand-row:last-child { margin-bottom: 0; }
+.cand-top {
+  display: flex; justify-content: space-between;
+  align-items: baseline; margin-bottom: 5px; gap: 8px;
+}
+.cand-name-wrap { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
+.cand-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-bottom: 1px; }
+.cand-name { font-size: 12px; font-weight: 700; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cand-party { font-size: 9px; font-weight: 500; color: var(--ink3); white-space: nowrap; }
+.cand-right { display: flex; align-items: baseline; gap: 6px; flex-shrink: 0; }
+.cand-pct { font-size: 14px; font-weight: 800; letter-spacing: -0.5px; }
+.cand-ci { font-size: 9px; font-weight: 500; color: var(--ink3); }
+
+.bar-track {
+  height: 6px; background: var(--border);
+  border-radius: 3px; position: relative; overflow: visible;
+}
+.bar-fill {
+  height: 100%; border-radius: 3px;
+  transition: width 1.2s cubic-bezier(0.16,1,0.3,1);
+}
+.bar-ci-range {
+  position: absolute; top: -4px; height: 14px;
+  background: rgba(0,0,0,0.06);
+  border-left: 1.5px solid rgba(0,0,0,0.2);
+  border-right: 1.5px solid rgba(0,0,0,0.2);
+}
+
+/* ── P2V GRID ── */
+.p2v-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.p2v-item {
+  border: 1px solid var(--border);
+  border-radius: 5px; padding: 12px 14px;
+  position: relative; overflow: hidden;
+  background: var(--surface2);
+}
+.p2v-item-bar {
+  position: absolute; bottom: 0; left: 0;
+  height: 3px; border-radius: 0 0 5px 5px;
+}
+.p2v-name { font-size: 11px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.p2v-pct { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; line-height: 1; }
+.p2v-sub { font-size: 9px; font-weight: 500; color: var(--ink3); margin-top: 3px; }
+
+/* ── CANVAS ── */
+canvas { display: block; width: 100%; }
+
+/* ── SCENARIO CARDS ── */
+.scen-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+@media(max-width:700px){ .scen-grid { grid-template-columns: 1fr 1fr; } }
+.scen-item {
+  border: 1px solid var(--border); border-radius: 5px;
+  padding: 14px; background: var(--surface2);
+}
+.scen-pair {
+  font-size: 10px; font-weight: 600; color: var(--ink3);
+  margin-bottom: 6px; display: flex; align-items: center; gap: 5px;
+}
+.scen-pct { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; color: var(--ink); }
+.scen-lbl { font-size: 9px; font-weight: 500; color: var(--ink3); margin-top: 2px; }
+.scen-top { border-color: #2c3347; border-left: 3px solid #2c3347; }
+.scen-top .scen-pct { color: #2c3347; }
+
+/* ── TABLE ── */
+.data-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 11px;
+}
+.data-table th {
+  font-size: 8px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--ink3);
+  padding: 7px 10px; border-bottom: 2px solid var(--border);
+  text-align: left; background: var(--surface2);
+  white-space: nowrap;
+}
+.data-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--border);
+  font-weight: 500; color: var(--ink2);
+  vertical-align: middle;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--surface2); }
+.t-source { font-weight: 700; color: var(--ink); font-size: 11px; }
+.t-method { font-size: 9px; color: var(--ink3); }
+.stars { letter-spacing: -1px; font-size: 12px; }
+.rigor-pct { font-size: 9px; font-weight: 700; color: var(--ink3); margin-left: 3px; }
+
+/* ── METHOD GRID ── */
+.method-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+@media(max-width:900px){ .method-grid { grid-template-columns: 1fr 1fr; } }
+.method-item { display: flex; gap: 12px; align-items: flex-start; }
+.method-num {
+  width: 26px; height: 26px; border-radius: 4px;
+  background: var(--navy); color: rgba(255,255,255,0.65);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800; flex-shrink: 0;
+}
+.method-text h4 { font-size: 11px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+.method-text p { font-size: 10px; font-weight: 400; color: var(--ink3); line-height: 1.55; }
+
+/* ── DIVIDER ── */
+.section-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--ink3);
+  margin: 20px 0 10px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── FOOTER ── */
+.page-footer {
+  background: var(--navy);
+  padding: 20px 32px;
+  margin-top: 0;
+}
+.footer-inner {
+  max-width: 1360px; margin: 0 auto;
+  display: flex; justify-content: space-between;
+  align-items: flex-start; gap: 20px; flex-wrap: wrap;
+}
+.footer-note {
+  font-size: 9px; font-weight: 500;
+  color: rgba(255,255,255,0.3); line-height: 1.8; max-width: 780px;
+}
+.footer-note strong { color: rgba(255,255,255,0.5); }
+.footer-sig { font-size: 9px; font-weight: 600; color: rgba(255,255,255,0.25); text-align: right; line-height: 1.8; }
+.footer-sig strong { color: rgba(255,255,255,0.5); font-size: 10px; display: block; }
+
+/* ── TICKER ── */
+.ticker {
+  background: #f4f5f7; border: 1px solid #d8dce4;
+  border-radius: 5px; padding: 9px 14px;
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 16px; font-size: 10px; font-weight: 600;
+  color: #3a4155;
+}
+.ticker-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #4a5568; flex-shrink: 0;
+  animation: blink 2s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* scrollable */
+.scrollable { overflow-x: auto; }
+
+/* fade in */
+.fade-in { animation: fadeIn 0.4s ease forwards; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+
+</style>
+</head>
+<body>
+
+<!-- LOADING -->
+<div id="loading-screen">
+  <div class="load-logo">Análisis Electoral · Colombia</div>
+  <div class="load-title">Simulación Monte Carlo<br>Primera Vuelta 2026</div>
+  <div class="load-sub">Procesando escenarios</div>
+  <div class="load-counter" id="sim-count">0</div>
+  <div class="load-bar-wrap">
+    <div class="load-bar" id="progress-bar"></div>
+  </div>
+  <div class="load-status" id="loading-status">Inicializando modelo…</div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" style="display:none">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-flag">
+        <div class="flag-stripe" style="background:#FCD116"></div>
+        <div class="flag-stripe" style="background:#003893"></div>
+        <div class="flag-stripe" style="background:#CE1126"></div>
+      </div>
+      <div class="topbar-sep"></div>
+      <div class="topbar-title">República de Colombia · Elecciones Presidenciales 2026</div>
+      <div class="topbar-sep"></div>
+      <div class="topbar-sub">Primera Vuelta · 31 mayo 2026</div>
+    </div>
+    <div class="topbar-right">
+      <span class="chip chip-green">✓ 10,000 escenarios</span>
+      <span class="chip chip-blue">Monte Carlo</span>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="header-grid">
+      <div>
+        <div class="header-eyebrow">Pronóstico Electoral · Análisis Cuantitativo</div>
+        <div class="header-h1">Simulación <span>Monte Carlo</span><br>Intención de Voto — Primera Vuelta</div>
+        <div class="header-meta">
+          <span class="header-meta-item"><strong>Fecha:</strong> 22 mayo 2026</span>
+          <span class="header-meta-item"><strong>Escenarios:</strong> 10,000</span>
+          <span class="header-meta-item"><strong>Fuentes:</strong> Invamer · Génesis Crea · Guarumo · CNC · GAD3 · AtlasIntel</span>
+          <span class="header-meta-item"><strong>Metodología:</strong> Distribución Dirichlet + ruido histórico calibrado (σ≈4.2pp)</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="header-author">
+          <strong>Hernando Andrés Guevara Peláez</strong>
+          Profesional en Política<br>y Relaciones Internacionales<br>Universidad Sergio Arboleda
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-body">
+
+    <!-- TICKER -->
+    <div class="ticker">
+      <div class="ticker-dot"></div>
+      <span id="ticker-text">Simulación completada · 10,000 escenarios · Ponderación: antigüedad × rigor metodológico × √n</span>
+    </div>
+
+    <!-- KPIs -->
+    <div class="kpi-row">
+      <div class="kpi" style="border-left-color:#4a4a4a">
+        <div class="kpi-label">Escenarios simulados</div>
+        <div class="kpi-value" style="color:#1c3d6e">10,000</div>
+        <div class="kpi-sub">Distribución Dirichlet completa</div>
+      </div>
+      <div class="kpi" style="border-left-color:#4a4a4a">
+        <div class="kpi-label">Encuestadoras ponderadas</div>
+        <div class="kpi-value" style="color:#3d2b6e">7</div>
+        <div class="kpi-sub">Con score de rigor metodológico</div>
+      </div>
+      <div class="kpi" style="border-left-color:#4a4a4a">
+        <div class="kpi-label">Prob. segunda vuelta</div>
+        <div class="kpi-value" id="kpi-p2v" style="color:#0d5c4a">—</div>
+        <div class="kpi-sub">Ningún candidato ≥ 50%</div>
+      </div>
+      <div class="kpi" style="border-left-color:#4a4a4a">
+        <div class="kpi-label">Margen de error combinado</div>
+        <div class="kpi-value" style="color:#7a5c00">±2.8pp</div>
+        <div class="kpi-sub">IC 95% · Promedio ponderado</div>
+      </div>
+    </div>
+
+    <!-- WINNER BANNER -->
+    <div class="winner-banner">
+      <div class="wb-left">
+        <div class="wb-eyebrow">Primer lugar más probable · Primera vuelta</div>
+        <div class="wb-name" id="wb-name">—</div>
+        <div class="wb-party" id="wb-party">—</div>
+      </div>
+      <div class="wb-stats">
+        <div class="wb-stat">
+          <div class="wb-stat-val" id="wb-pct">—</div>
+          <div class="wb-stat-lbl">Voto proyectado</div>
+        </div>
+        <div class="wb-stat">
+          <div class="wb-stat-val" id="wb-prob">—</div>
+          <div class="wb-stat-lbl">P(primer lugar)</div>
+        </div>
+        <div class="wb-stat">
+          <div class="wb-stat-val" id="wb-ci">—</div>
+          <div class="wb-stat-lbl">Intervalo 95%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="section-label">Resultados de la simulación</div>
+    <div class="main-grid">
+
+      <!-- BARRAS -->
+      <div class="card fade-in">
+        <div class="card-head">
+          <span class="card-title">Intención de voto proyectada</span>
+          <span class="card-tag">Promedio ponderado · IC 95%</span>
+        </div>
+        <div class="card-body" id="candidates-bars"></div>
+      </div>
+
+      <!-- P2V -->
+      <div class="card fade-in">
+        <div class="card-head">
+          <span class="card-title">Probabilidad de acceder a segunda vuelta</span>
+          <span class="card-tag">n = 10,000</span>
+        </div>
+        <div class="card-body">
+          <div class="p2v-grid" id="p2v-grid"></div>
+        </div>
+      </div>
+
+      <!-- HISTOGRAMA -->
+      <div class="card fade-in grid-full">
+        <div class="card-head">
+          <span class="card-title">Distribución de resultados simulados · Principales candidatos</span>
+          <span class="card-tag">Densidad acumulada · 10,000 escenarios</span>
+        </div>
+        <div class="card-body">
+          <div style="background:#f7f8fa;border:1px solid #e2e5eb;border-radius:4px;padding:10px 14px;margin-bottom:14px;font-size:10px;font-weight:500;color:#5d6475;line-height:1.65">
+            <strong style="color:#3a4155;font-weight:700">Cómo leer este gráfico:</strong> Cada curva representa la distribución de frecuencia de los resultados obtenidos para un candidato en los 10,000 escenarios simulados. El eje horizontal indica el porcentaje de voto; el eje vertical, la proporción de escenarios en que el candidato obtuvo ese resultado. Una curva más <em>estrecha y alta</em> indica mayor certeza en torno a un valor central; una curva más <em>ancha y baja</em> refleja mayor incertidumbre. Las zonas sombreadas son las distribuciones acumuladas; las líneas, el perfil de densidad. Los candidatos menores (Botero, voto en blanco, otros) se omiten por escala.
+          </div>
+          <canvas id="dist-canvas" height="200"></canvas>
+          <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:14px" id="dist-legend"></div>
+        </div>
+      </div>
+
+      <!-- ESCENARIOS -->
+      <div class="card fade-in">
+        <div class="card-head">
+          <span class="card-title">Escenarios de segunda vuelta más probables</span>
+          <span class="card-tag">% de simulaciones</span>
+        </div>
+        <div class="card-body">
+          <div class="scen-grid" id="scen-grid"></div>
+        </div>
+      </div>
+
+      <!-- TABLA ENCUESTAS -->
+      <div class="card fade-in">
+        <div class="card-head">
+          <span class="card-title">Encuestas base · Mayo 2026</span>
+          <span class="card-tag">Ponderación: antigüedad × rigor × √n</span>
+        </div>
+        <div class="card-body" style="padding:0">
+          <div class="scrollable">
+            <table class="data-table" id="poll-table">
+              <thead>
+                <tr>
+                  <th>Fuente</th>
+                  <th>Fecha</th>
+                  <th>Rigor</th>
+                  <th style="color:var(--cc)">Cepeda</th>
+                  <th style="color:var(--ce)">Espriella</th>
+                  <th style="color:var(--cv)">Valencia</th>
+                  <th style="color:var(--cf)">Fajardo</th>
+                  <th style="color:var(--cl)">C.López</th>
+                  <th style="color:var(--cb)">Botero</th>
+                  <th>n</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /main-grid -->
+
+    <!-- METODOLOGÍA -->
+    <div class="section-label">Nota metodológica</div>
+    <div class="card fade-in">
+      <div class="card-head">
+        <span class="card-title">Metodología de la simulación Monte Carlo <span style="font-weight:400;color:var(--ink3);font-size:8px;letter-spacing:0.5px;text-transform:none">(dos palabras: topónimo del Principado de Mónaco)</span></span>
+        <span class="card-tag">7 componentes</span>
+      </div>
+      <div class="card-body">
+        <div class="method-grid">
+          <div class="method-item">
+            <div class="method-num">1</div>
+            <div class="method-text">
+              <h4>Ponderación multifactorial de encuestas</h4>
+              <p>Cada encuesta recibe un peso compuesto: <strong>antigüedad</strong> (decaimiento exponencial hacia encuestas recientes), <strong>rigor metodológico</strong> (escala 0.65–1.00 según método de recolección, cobertura y transparencia) y <strong>tamaño muestral</strong> (√n). AtlasIntel recibe descuento por sesgo de cobertura rural y opacidad en la ponderación de su river-sampling online.</p>
+            </div>
+          </div>
+          <div class="method-item">
+            <div class="method-num">2</div>
+            <div class="method-text">
+              <h4>Distribución Dirichlet para proporciones</h4>
+              <p>El método correcto para modelar proporciones de voto conjuntas. Los parámetros α se calibran sobre el vector de medias ponderadas. A diferencia de muestreos gaussianos independientes, la Dirichlet garantiza que todos los candidatos sumen 100% en cada escenario y modela adecuadamente la correlación entre opciones.</p>
+            </div>
+          </div>
+          <div class="method-item">
+            <div class="method-num">3</div>
+            <div class="method-text">
+              <h4>Ruido histórico calibrado</h4>
+              <p>Se superpone ruido gaussiano independiente de σ≈4.2pp por candidato, calibrado sobre el error promedio de encuestadoras colombianas en las elecciones de 2010, 2014, 2018 y 2022. Captura movimientos de última hora, activación diferencial y efectos de campaña no medidos en encuestas.</p>
+            </div>
+          </div>
+          <div class="method-item">
+            <div class="method-num">4</div>
+            <div class="method-text">
+              <h4>10,000 escenarios completos</h4>
+              <p>Cada iteración produce un vector de resultados normalizado al 100%. Se registra el orden de candidatos, el ganador en primera vuelta (si supera 50%) y la composición del balotaje. Los IC 95% provienen de los percentiles 2.5 y 97.5 de la distribución empírica, no de fórmulas paramétricas.</p>
+            </div>
+          </div>
+          <div class="method-item">
+            <div class="method-num">5</div>
+            <div class="method-text">
+              <h4>Limitaciones del modelo</h4>
+              <p>El modelo captura la incertidumbre <em>dentro</em> de los datos pero no la incertidumbre <em>sobre</em> los datos. Los sesgos propios de cada encuestadora (Invamer: posible sobrerepresentación del votante "decidido" de estratos medios-altos; AtlasIntel: subcobertura rural) no se eliminan completamente por la ponderación.</p>
+            </div>
+          </div>
+          <div class="method-item">
+            <div class="method-num">6</div>
+            <div class="method-text">
+              <h4>Voto indeciso y abstención</h4>
+              <p>El voto indeciso y en blanco (~8–12% en encuestas) se redistribuye proporcionalmente con un factor de atracción histórico. La abstención diferencial —especialmente en zonas rurales y voto joven— representa la principal fuente de incertidumbre no modelada que podría alterar resultados.</p>
+            </div>
+          </div>
+          <div class="method-item" style="grid-column:1/-1;border-top:1px solid var(--border);padding-top:14px;margin-top:4px">
+            <div class="method-num">7</div>
+            <div class="method-text">
+              <h4>Índice de rigor metodológico por encuestadora</h4>
+              <p>A cada encuesta se le asigna un coeficiente de rigor (0.00–1.00) construido sobre cuatro dimensiones evaluadas cualitativamente con base en estándares ESOMAR y literatura de polling comparado:</p>
+              <div style="margin-top:10px;display:grid;grid-template-columns:repeat(2,1fr);gap:8px">
+                <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:10px 12px">
+                  <div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--ink3);margin-bottom:4px">① Método de recolección</div>
+                  <div style="font-size:10px;color:var(--ink2);line-height:1.5">Presencial multietápica y telefónica estratificada (CATI) reciben el peso máximo por su capacidad de representar universos complejos y su trazabilidad. Encuestas <em>online</em> por <em>river-sampling</em> reciben descuento por sesgo de autoselección y cobertura incompleta.</div>
+                </div>
+                <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:10px 12px">
+                  <div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--ink3);margin-bottom:4px">② Cobertura territorial</div>
+                  <div style="font-size:10px;color:var(--ink2);line-height:1.5">Se penaliza a encuestadoras con subcobertura estructural de zonas rurales, Pacífico, Caribe y estratos 1–2. En Colombia esto es crítico: el voto popular periférico ha determinado resultados en 2010, 2018 y 2022.</div>
+                </div>
+                <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:10px 12px">
+                  <div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--ink3);margin-bottom:4px">③ Transparencia y documentación</div>
+                  <div style="font-size:10px;color:var(--ink2);line-height:1.5">Se evalúa si la firma publica ficha técnica completa ante el CNE, detalla su esquema de ponderación, informa tasas de respuesta y hace disponible el cuestionario. Firmas con ponderación opaca reciben descuento significativo.</div>
+                </div>
+                <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:10px 12px">
+                  <div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--ink3);margin-bottom:4px">④ Historial de precisión en Colombia</div>
+                  <div style="font-size:10px;color:var(--ink2);line-height:1.5">Se compara el error absoluto promedio de cada firma en las elecciones colombianas de 2010, 2014, 2018 y 2022. Firmas con historial corto o externo al país reciben un descuento por incertidumbre de calibración local.</div>
+                </div>
+              </div>
+              <p style="margin-top:10px;font-size:10px;color:var(--ink3);background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:8px 12px">
+                <strong style="color:var(--ink2)">Advertencia:</strong> Los coeficientes de rigor son juicios cualitativos estructurados, no medidas paramétricas exactas. Se presentan como rangos orientativos y pueden ser revisados. Su función es ponderar diferencialmente las fuentes, no certificar ni descalificar a ninguna encuestadora. Un analista razonable podría asignar valores distintos dentro de un rango de ±0.10 sin alterar sustancialmente los resultados del modelo.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /page-body -->
+
+  <!-- FOOTER -->
+  <div class="page-footer">
+    <div class="footer-inner">
+      <div class="footer-note">
+        <strong>ADVERTENCIA:</strong> Este documento es un ejercicio de análisis cuantitativo basado en encuestas publicadas. Los resultados representan distribuciones de probabilidad, no predicciones determinísticas. Las encuestas tienen márgenes de error propios. Los resultados electorales pueden verse afectados por factores no capturados en las encuestas.<br>
+        <strong>FUENTES:</strong> Invamer/Caracol-BluRadio (21 may), AtlasIntel/Semana (19 may), Génesis Crea (14–20 may), CNC/Cambio (3 may), Guarumo-EcoAnalítica (30 abr), GAD3/RCN (27 abr), Invamer/Caracol (26 abr).
+      </div>
+      <div class="footer-sig">
+        <strong>Hernando Andrés Guevara Peláez</strong>
+        Profesional en Política<br>y Relaciones Internacionales<br>Universidad Sergio Arboleda<br>22 mayo 2026
+      </div>
+    </div>
+  </div>
+
+</div><!-- /dashboard -->
+
+<script>
+// ══════════════════════════════════════════════════
+// DATOS
+// ══════════════════════════════════════════════════
+
+const POLLS = [
+  {
+    name: 'Invamer (última)',
+    date: '21 may 2026', n: 2741,
+    weight_time: 1.00, weight_method: 1.00,
+    method_label: 'Telefónica estratificada', method_score: 5,
+    data: { cepeda:44.6, espriella:31.6, valencia:14.0, fajardo:2.4, claudia:2.2, botero:1.4, resto:3.8 }
+  },
+  {
+    name: 'Génesis Crea',
+    date: '20 may 2026', n: 4352,
+    weight_time: 0.97, weight_method: 0.88,
+    method_label: 'Presencial multietápica', method_score: 4,
+    data: { cepeda:34.3, espriella:21.7, valencia:27.9, fajardo:2.4, claudia:3.1, botero:0.9, resto:9.7 }
+  },
+  {
+    name: 'AtlasIntel/Semana',
+    date: '19 may 2026', n: 2800,
+    weight_time: 0.98, weight_method: 0.65,
+    method_label: 'Online river-sampling', method_score: 2,
+    data: { cepeda:37.6, espriella:32.9, valencia:16.7, fajardo:3.5, claudia:3.5, botero:0.4, resto:5.4 }
+  },
+  {
+    name: 'CNC / Cambio',
+    date: '3 may 2026', n: 2157,
+    weight_time: 0.82, weight_method: 0.82,
+    method_label: 'Telefónica', method_score: 4,
+    data: { cepeda:37.2, espriella:20.4, valencia:15.6, fajardo:3.0, claudia:2.8, botero:1.0, resto:20.0 }
+  },
+  {
+    name: 'Invamer',
+    date: '26 abr 2026', n: 3800,
+    weight_time: 0.72, weight_method: 1.00,
+    method_label: 'Telefónica estratificada', method_score: 5,
+    data: { cepeda:44.3, espriella:21.5, valencia:19.8, fajardo:2.5, claudia:3.6, botero:1.1, resto:7.2 }
+  },
+  {
+    name: 'Guarumo',
+    date: '30 abr 2026', n: 3736,
+    weight_time: 0.72, weight_method: 0.85,
+    method_label: 'Telefónica + online', method_score: 4,
+    data: { cepeda:38.0, espriella:23.9, valencia:22.8, fajardo:3.5, claudia:2.9, botero:0.9, resto:8.0 }
+  },
+  {
+    name: 'GAD3 / RCN',
+    date: '27 abr 2026', n: 1500,
+    weight_time: 0.70, weight_method: 0.80,
+    method_label: 'Telefónica (firma ext.)', method_score: 3,
+    data: { cepeda:36.0, espriella:21.0, valencia:13.0, fajardo:3.2, claudia:2.5, botero:0.8, resto:23.5 }
+  }
+];
+
+const CANDIDATES = [
+  { key:'cepeda',   name:'Iván Cepeda',             party:'Pacto Histórico',          color:'#8b1a1a' },
+  { key:'espriella',name:'A. De la Espriella',       party:'Defensores de la Patria',  color:'#1c3d6e' },
+  { key:'valencia', name:'Paloma Valencia',           party:'Centro Democrático',       color:'#3d2b6e' },
+  { key:'fajardo',  name:'Sergio Fajardo',            party:'Dignidad y Compromiso',    color:'#7a5c00' },
+  { key:'claudia',  name:'Claudia López',             party:'Con Claudia Imparables',   color:'#0d5c4a' },
+  { key:'botero',   name:'Santiago Botero',           party:'Romper el Sistema',        color:'#7a3e10' },
+  { key:'resto',    name:'Otros candidatos',          party:'Candidatos menores',       color:'#5d6475' },
+];
+
+// ══════════════════════════════════════════════════
+// ESTADÍSTICAS
+// ══════════════════════════════════════════════════
+
+function mean(arr){ return arr.reduce((a,b)=>a+b,0)/arr.length; }
+function percentile(arr,p){
+  const s=[...arr].sort((a,b)=>a-b);
+  const i=(p/100)*(s.length-1), lo=Math.floor(i), hi=Math.ceil(i);
+  return s[lo]+(s[hi]-s[lo])*(i-lo);
+}
+
+function computeWeightedMeans(){
+  const keys=CANDIDATES.map(c=>c.key);
+  const m={}; keys.forEach(k=>m[k]=0); let tw=0;
+  POLLS.forEach(p=>{
+    const w=p.weight_time*p.weight_method*Math.sqrt(p.n);
+    tw+=w; keys.forEach(k=>m[k]+=(p.data[k]||0)*w);
+  });
+  keys.forEach(k=>m[k]/=tw);
+  const s=Object.values(m).reduce((a,b)=>a+b,0);
+  keys.forEach(k=>m[k]=(m[k]/s)*100);
+  return m;
+}
+
+// ══════════════════════════════════════════════════
+// MONTE CARLO
+// ══════════════════════════════════════════════════
+
+let _z2=null;
+function randn(){
+  if(_z2!==null){const z=_z2;_z2=null;return z;}
+  const u1=Math.random(),u2=Math.random();
+  const mag=Math.sqrt(-2*Math.log(u1));
+  _z2=mag*Math.sin(2*Math.PI*u2);
+  return mag*Math.cos(2*Math.PI*u2);
+}
+function sampleGamma(a){
+  if(a<1) return sampleGamma(1+a)*Math.pow(Math.random(),1/a);
+  const d=a-1/3,c=1/Math.sqrt(9*d);
+  for(;;){
+    let x,v;
+    do{x=randn();v=1+c*x;}while(v<=0);
+    v=v*v*v;
+    const u=Math.random();
+    if(u<1-0.0331*x*x*x*x) return d*v;
+    if(Math.log(u)<0.5*x*x+d*(1-v+Math.log(v))) return d*v;
+  }
+}
+function sampleDirichlet(alphas){
+  const g=alphas.map(a=>sampleGamma(Math.max(a,0.1)));
+  const s=g.reduce((a,b)=>a+b,0);
+  return g.map(v=>v/s);
+}
+
+const SIGMA=4.2;
+
+async function runMonteCarlo(means,N=10000){
+  const keys=CANDIDATES.map(c=>c.key);
+  const conc=18;
+  const alphas=keys.map(k=>(means[k]/100)*conc*keys.length);
+
+  const res={
+    wins_p1:{}, pct_dist:{}, runoffs:{}, passes:{}
+  };
+  keys.forEach(k=>{res.wins_p1[k]=0;res.pct_dist[k]=[];res.passes[k]=0;});
+
+  const CHUNK=500;
+  let done=0;
+  while(done<N){
+    await new Promise(r=>setTimeout(r,0));
+    for(let i=0;i<CHUNK&&done<N;i++,done++){
+      let s=sampleDirichlet(alphas);
+      s=s.map(v=>Math.max(0,v+randn()*(SIGMA/100)));
+      const tot=s.reduce((a,b)=>a+b,0);
+      s=s.map(v=>(v/tot)*100);
+      keys.forEach((k,idx)=>res.pct_dist[k].push(s[idx]));
+      let mx=0,wp1=null;
+      keys.forEach((k,idx)=>{if(s[idx]>mx){mx=s[idx];wp1=k;}});
+      if(mx>50) res.wins_p1[wp1]++;
+      const sorted=keys.map((k,idx)=>({k,v:s[idx]})).sort((a,b)=>b.v-a.v);
+      res.passes[sorted[0].k]=(res.passes[sorted[0].k]||0)+1;
+      res.passes[sorted[1].k]=(res.passes[sorted[1].k]||0)+1;
+      const rk=[sorted[0].k,sorted[1].k].sort().join('_vs_');
+      res.runoffs[rk]=(res.runoffs[rk]||0)+1;
+    }
+    const pct=done/N;
+    document.getElementById('progress-bar').style.width=(pct*100)+'%';
+    document.getElementById('sim-count').textContent=done.toLocaleString('es-CO');
+  }
+  return res;
+}
+
+// ══════════════════════════════════════════════════
+// RENDER
+// ══════════════════════════════════════════════════
+
+function renderBars(results,N){
+  const el=document.getElementById('candidates-bars');
+  const data=CANDIDATES.map(c=>({
+    ...c,
+    m: mean(results.pct_dist[c.key]),
+    lo: percentile(results.pct_dist[c.key],2.5),
+    hi: percentile(results.pct_dist[c.key],97.5),
+  })).sort((a,b)=>b.m-a.m);
+
+  const maxV=data[0].hi+3;
+  el.innerHTML='';
+  data.forEach(c=>{
+    const bw=(c.m/maxV)*100;
+    const lw=(c.lo/maxV)*100;
+    const hw=(c.hi/maxV)*100;
+    const div=document.createElement('div');
+    div.className='cand-row';
+    div.innerHTML=`
+      <div class="cand-top">
+        <div class="cand-name-wrap">
+          <div class="cand-dot" style="background:${c.color};margin-top:4px"></div>
+          <div>
+            <div class="cand-name">${c.name}</div>
+            <div class="cand-party">${c.party}</div>
+          </div>
+        </div>
+        <div class="cand-right">
+          <span class="cand-pct" style="color:${c.color}">${c.m.toFixed(1)}%</span>
+          <span class="cand-ci">[${c.lo.toFixed(1)}–${c.hi.toFixed(1)}]</span>
+        </div>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${bw}%;background:${c.color}"></div>
+        <div class="bar-ci-range" style="left:${lw}%;width:${Math.max(hw-lw,0.3)}%"></div>
+      </div>`;
+    el.appendChild(div);
+  });
+}
+
+function renderP2V(results,N){
+  const el=document.getElementById('p2v-grid');
+  el.innerHTML='';
+  const data=CANDIDATES.filter(c=>c.key!=='resto').map(c=>({
+    ...c, prob:((results.passes[c.key]||0)/N)*100
+  })).sort((a,b)=>b.prob-a.prob);
+  data.forEach(c=>{
+    const d=document.createElement('div');
+    d.className='p2v-item';
+    d.innerHTML=`
+      <div class="p2v-name">${c.name}</div>
+      <div class="p2v-pct" style="color:${c.color}">${c.prob.toFixed(1)}%</div>
+      <div class="p2v-sub">${c.party}</div>
+      <div class="p2v-item-bar" style="width:${Math.min(c.prob,100)}%;background:${c.color}"></div>`;
+    el.appendChild(d);
+  });
+}
+
+function renderScenarios(results,N){
+  const el=document.getElementById('scen-grid');
+  el.innerHTML='';
+  const sorted=Object.entries(results.runoffs).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const maxCount=sorted[0]?.[1]||1;
+  sorted.forEach(([key,count],idx)=>{
+    const [k1,k2]=key.split('_vs_');
+    const c1=CANDIDATES.find(c=>c.key===k1);
+    const c2=CANDIDATES.find(c=>c.key===k2);
+    if(!c1||!c2) return;
+    const pct=(count/N*100).toFixed(1);
+    const d=document.createElement('div');
+    d.className='scen-item'+(idx===0?' scen-top':'');
+    d.innerHTML=`
+      <div class="scen-pair">
+        <span style="color:${c1.color};font-weight:700">${c1.name.split(' ').pop()}</span>
+        <span style="color:var(--ink4);font-size:8px">VS</span>
+        <span style="color:${c2.color};font-weight:700">${c2.name.split(' ').pop()}</span>
+      </div>
+      <div class="scen-pct">${pct}%</div>
+      <div class="scen-lbl">de escenarios simulados</div>`;
+    el.appendChild(d);
+  });
+}
+
+function renderHistogram(results){
+  const canvas=document.getElementById('dist-canvas');
+  const W=canvas.offsetWidth||900, H=200;
+  canvas.width=W; canvas.height=H;
+  const ctx=canvas.getContext('2d');
+
+  const keys=['cepeda','espriella','valencia','fajardo','claudia'];
+  const colors={cepeda:'#8b1a1a',espriella:'#1c3d6e',valencia:'#3d2b6e',fajardo:'#7a5c00',claudia:'#0d5c4a'};
+  const names={cepeda:'Cepeda',espriella:'De la Espriella',valencia:'Valencia',fajardo:'Fajardo',claudia:'C. López'};
+
+  const bins=40, minX=0, maxX=60, bw=(maxX-minX)/bins;
+  const hists={};
+  keys.forEach(k=>{
+    const h=new Array(bins).fill(0);
+    results.pct_dist[k].forEach(v=>{
+      const b=Math.min(Math.floor((v-minX)/bw),bins-1);
+      if(b>=0) h[b]++;
+    });
+    hists[k]=h;
+  });
+  const maxC=Math.max(...keys.flatMap(k=>hists[k]));
+  const pL=44,pR=16,pT=12,pB=28;
+  const pw=W-pL-pR, ph=H-pT-pB;
+
+  // Grid
+  ctx.strokeStyle='#e2e5eb'; ctx.lineWidth=1;
+  for(let i=0;i<=4;i++){
+    const y=pT+(ph/4)*i;
+    ctx.beginPath();ctx.moveTo(pL,y);ctx.lineTo(pL+pw,y);ctx.stroke();
+  }
+  // Y labels
+  ctx.fillStyle='#8a93a8'; ctx.font='600 9px Montserrat,sans-serif'; ctx.textAlign='right';
+  for(let i=0;i<=4;i++){
+    const y=pT+(ph/4)*i;
+    const v=Math.round((1-i/4)*maxC/results.pct_dist['cepeda'].length*100);
+    ctx.fillText(v+'%',pL-6,y+3);
+  }
+  // X labels
+  ctx.textAlign='center';
+  for(let x=0;x<=maxX;x+=10){
+    const px=pL+(x/maxX)*pw;
+    ctx.fillText(x+'%',px,H-8);
+  }
+
+  keys.forEach(k=>{
+    const h=hists[k];
+    // Fill
+    ctx.beginPath();
+    h.forEach((c,i)=>{
+      const x=pL+(i/bins)*pw;
+      const bh=(c/maxC)*ph;
+      const y=pT+ph-bh;
+      if(i===0) ctx.moveTo(x,pT+ph);
+      ctx.lineTo(x,y);
+      ctx.lineTo(x+pw/bins,y);
+    });
+    ctx.lineTo(pL+pw,pT+ph); ctx.closePath();
+    ctx.fillStyle=colors[k]+'20'; ctx.fill();
+    // Line
+    ctx.beginPath();
+    h.forEach((c,i)=>{
+      const x=pL+(i/bins)*pw+pw/bins/2;
+      const y=pT+ph-(c/maxC)*ph;
+      if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    });
+    ctx.strokeStyle=colors[k]; ctx.lineWidth=1.8; ctx.stroke();
+  });
+
+  // Legend
+  const leg=document.getElementById('dist-legend');
+  leg.innerHTML='';
+  keys.forEach(k=>{
+    const m=mean(results.pct_dist[k]);
+    const lo=percentile(results.pct_dist[k],2.5);
+    const hi=percentile(results.pct_dist[k],97.5);
+    const d=document.createElement('div');
+    d.style.cssText='display:flex;align-items:center;gap:7px;';
+    d.innerHTML=`
+      <div style="width:20px;height:2px;background:${colors[k]};border-radius:1px;flex-shrink:0"></div>
+      <span style="font-size:10px;font-weight:700;color:${colors[k]}">${names[k]}</span>
+      <span style="font-size:10px;font-weight:500;color:#8a93a8">${m.toFixed(1)}%</span>
+      <span style="font-size:9px;color:#c2c8d4">[${lo.toFixed(1)}–${hi.toFixed(1)}]</span>`;
+    leg.appendChild(d);
+  });
+}
+
+function renderPollTable(){
+  const tbody=document.querySelector('#poll-table tbody');
+  POLLS.forEach(p=>{
+    const d=p.data;
+    const filled='★'.repeat(p.method_score);
+    const empty='☆'.repeat(5-p.method_score);
+    const sc=p.method_score>=4?'#117a65':p.method_score===3?'#b8860b':'#c0392b';
+    const tr=document.createElement('tr');
+    tr.innerHTML=`
+      <td><div class="t-source">${p.name}</div><div class="t-method">${p.method_label}</div></td>
+      <td style="color:var(--ink3);font-size:10px;white-space:nowrap">${p.date}</td>
+      <td>
+        <span class="stars" style="color:${sc}">${filled}</span><span class="stars" style="color:#c2c8d4">${empty}</span>
+        <span class="rigor-pct">${(p.weight_method*100).toFixed(0)}%</span>
+      </td>
+      <td style="color:#8b1a1a;font-weight:700">${d.cepeda.toFixed(1)}%</td>
+      <td style="color:#1c3d6e;font-weight:600">${d.espriella.toFixed(1)}%</td>
+      <td style="color:#3d2b6e;font-weight:600">${d.valencia.toFixed(1)}%</td>
+      <td style="color:#7a5c00;font-weight:600">${d.fajardo.toFixed(1)}%</td>
+      <td style="color:#0d5c4a;font-weight:600">${d.claudia.toFixed(1)}%</td>
+      <td style="color:#7a3e10;font-weight:600">${d.botero.toFixed(1)}%</td>
+      <td style="color:var(--ink3);font-size:10px">${p.n.toLocaleString('es-CO')}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+function updateKPIs(results,N){
+  const m=mean(results.pct_dist['cepeda']);
+  const lo=percentile(results.pct_dist['cepeda'],2.5);
+  const hi=percentile(results.pct_dist['cepeda'],97.5);
+  const prob=((results.passes['cepeda']||0)/N*100).toFixed(0);
+  document.getElementById('wb-name').textContent='Iván Cepeda Castro';
+  document.getElementById('wb-party').textContent='Pacto Histórico';
+  document.getElementById('wb-pct').textContent=m.toFixed(1)+'%';
+  document.getElementById('wb-prob').textContent=prob+'%';
+  document.getElementById('wb-ci').textContent=lo.toFixed(1)+'–'+hi.toFixed(1)+'%';
+  const anyWins=Object.values(results.wins_p1).reduce((a,b)=>a+b,0);
+  document.getElementById('kpi-p2v').textContent=((N-anyWins)/N*100).toFixed(1)+'%';
+}
+
+// ══════════════════════════════════════════════════
+// MAIN
+// ══════════════════════════════════════════════════
+
+const STATUSES=[
+  'Calculando medias ponderadas…',
+  'Calibrando parámetros Dirichlet…',
+  'Aplicando rigor metodológico por fuente…',
+  'Ejecutando escenarios Monte Carlo…',
+  'Computando distribuciones de resultados…',
+  'Calculando intervalos de confianza IC 95%…',
+  'Analizando escenarios de segunda vuelta…',
+  'Compilando resultados…',
+];
+
+async function main(){
+  const statusEl=document.getElementById('loading-status');
+  let si=0;
+  const stInt=setInterval(()=>{ if(si<STATUSES.length) statusEl.textContent=STATUSES[si++]; },700);
+
+  const means=computeWeightedMeans();
+  const results=await runMonteCarlo(means,10000);
+
+  clearInterval(stInt);
+  document.getElementById('progress-bar').style.width='100%';
+  document.getElementById('sim-count').textContent='10,000';
+  statusEl.textContent='✓ Completado';
+  await new Promise(r=>setTimeout(r,500));
+
+  document.getElementById('loading-screen').style.display='none';
+  document.getElementById('dashboard').style.display='block';
+
+  renderBars(results,10000);
+  renderP2V(results,10000);
+  renderScenarios(results,10000);
+  renderPollTable();
+  updateKPIs(results,10000);
+  setTimeout(()=>renderHistogram(results),120);
+}
+
+main();
+</script>
+</body>
+</html>

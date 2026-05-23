@@ -97,7 +97,6 @@ body {
 }
 .topbar-left {
   display: flex; align-items: center; gap: 16px;
-  min-width: 0;
 }
 .topbar-flag {
   display: flex; align-items: center; gap: 6px;
@@ -107,11 +106,10 @@ body {
   font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.9);
   letter-spacing: 0.5px; text-transform: uppercase;
 }
-.topbar-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.12); display: none; }
+.topbar-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.12); }
 .topbar-sub {
   font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.4);
   letter-spacing: 1px; text-transform: uppercase;
-  display: none;
 }
 .topbar-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .chip {
@@ -120,7 +118,7 @@ body {
 }
 .chip-green { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.15); }
 .chip-blue  { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.1); }
-@media(min-width:769px){ .topbar-sep { display: block; } .topbar-sub { display: block; } }
+@media(max-width:768px){ .topbar-sep { display: none; } .topbar-sub { display: none; } }
 
 /* ── HEADER ── */
 .page-header {

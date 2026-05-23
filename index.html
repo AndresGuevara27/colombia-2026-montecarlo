@@ -14,9 +14,9 @@
   --surface2: #f7f8fa;
   --border:   #e2e5eb;
   --border2:  #d0d4dc;
-  --ink:      #0f1623;
-  --ink2:     #3a4155;
-  --ink3:     #8a93a8;
+  --ink:      #000000;
+  --ink2:     #000000;
+  --ink3:     #333333;
   --ink4:     #c2c8d4;
   --navy:     #0d1b3e;
   --navy2:    #1a2f5e;
@@ -42,7 +42,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   min-height: 100vh;
-  font-size: 13px;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -56,7 +56,7 @@ body {
   gap: 20px;
 }
 .load-logo {
-  font-size: 11px; font-weight: 700; letter-spacing: 4px;
+  font-size: 14px; font-weight: 700; letter-spacing: 4px;
   color: rgba(255,255,255,0.35); text-transform: uppercase;
   margin-bottom: 8px;
 }
@@ -65,7 +65,7 @@ body {
   letter-spacing: -0.3px; text-align: center;
 }
 .load-sub {
-  font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.4);
+  font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.4);
   letter-spacing: 2px; text-transform: uppercase;
 }
 .load-counter {
@@ -82,7 +82,7 @@ body {
   transition: width 0.1s linear;
 }
 .load-status {
-  font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.3);
+  font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.3);
   letter-spacing: 1px; text-transform: uppercase;
 }
 
@@ -102,17 +102,17 @@ body {
 }
 .flag-stripe { width: 4px; height: 20px; }
 .topbar-title {
-  font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.9);
+  font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.9);
   letter-spacing: 0.5px; text-transform: uppercase;
 }
 .topbar-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.12); }
 .topbar-sub {
-  font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.4);
+  font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.4);
   letter-spacing: 1px; text-transform: uppercase;
 }
 .topbar-right { display: flex; align-items: center; gap: 12px; }
 .chip {
-  font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
   text-transform: uppercase; padding: 4px 10px; border-radius: 3px;
 }
 .chip-green { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.15); }
@@ -130,7 +130,7 @@ body {
   gap: 24px; align-items: end;
 }
 .header-eyebrow {
-  font-size: 9px; font-weight: 700; letter-spacing: 3px;
+  font-size: 12px; font-weight: 700; letter-spacing: 3px;
   text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 8px;
 }
 .header-h1 {
@@ -140,17 +140,17 @@ body {
 .header-h1 span { color: rgba(255,255,255,0.65); }
 .header-meta { margin-top: 10px; display: flex; gap: 20px; flex-wrap: wrap; }
 .header-meta-item {
-  font-size: 10px; font-weight: 500;
+  font-size: 13px; font-weight: 500;
   color: rgba(255,255,255,0.4); letter-spacing: 0.5px;
 }
 .header-meta-item strong { color: rgba(255,255,255,0.7); font-weight: 600; }
 .header-right { text-align: right; }
 .header-author {
-  font-size: 10px; font-weight: 600;
+  font-size: 13px; font-weight: 600;
   color: rgba(255,255,255,0.5); letter-spacing: 0.5px;
   line-height: 1.8; text-align: right;
 }
-.header-author strong { color: rgba(255,255,255,0.8); display: block; font-size: 11px; }
+.header-author strong { color: rgba(255,255,255,0.8); display: block; font-size: 14px; }
 
 /* ── LAYOUT ── */
 .page-body { max-width: 1360px; margin: 0 auto; padding: 24px 32px 48px; }
@@ -171,14 +171,14 @@ body {
   border-left: 3px solid transparent;
 }
 .kpi-label {
-  font-size: 9px; font-weight: 700; letter-spacing: 2px;
+  font-size: 12px; font-weight: 700; letter-spacing: 2px;
   text-transform: uppercase; color: var(--ink3); margin-bottom: 6px;
 }
 .kpi-value {
-  font-size: 26px; font-weight: 800; line-height: 1;
+  font-size: 30px; font-weight: 800; line-height: 1;
   letter-spacing: -1px; color: var(--ink);
 }
-.kpi-sub { font-size: 10px; font-weight: 500; color: var(--ink3); margin-top: 4px; }
+.kpi-sub { font-size: 13px; font-weight: 500; color: var(--ink3); margin-top: 4px; }
 
 /* ── WINNER BANNER ── */
 .winner-banner {
@@ -191,13 +191,13 @@ body {
   gap: 20px; flex-wrap: wrap; margin-bottom: 20px;
 }
 .wb-left {}
-.wb-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ink3); margin-bottom: 4px; }
-.wb-name { font-size: 20px; font-weight: 800; color: var(--cc); letter-spacing: -0.3px; }
-.wb-party { font-size: 10px; font-weight: 500; color: var(--ink3); margin-top: 2px; }
+.wb-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ink3); margin-bottom: 4px; }
+.wb-name { font-size: 24px; font-weight: 800; color: var(--cc); letter-spacing: -0.3px; }
+.wb-party { font-size: 13px; font-weight: 500; color: var(--ink3); margin-top: 2px; }
 .wb-stats { display: flex; gap: 32px; flex-wrap: wrap; }
 .wb-stat {}
-.wb-stat-val { font-size: 28px; font-weight: 800; letter-spacing: -1px; color: var(--ink); }
-.wb-stat-lbl { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink3); }
+.wb-stat-val { font-size: 32px; font-weight: 800; letter-spacing: -1px; color: var(--ink); }
+.wb-stat-lbl { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink3); }
 
 /* ── MAIN GRID ── */
 .main-grid {
@@ -223,11 +223,11 @@ body {
   background: var(--surface2);
 }
 .card-title {
-  font-size: 9px; font-weight: 700; letter-spacing: 2px;
+  font-size: 12px; font-weight: 700; letter-spacing: 2px;
   text-transform: uppercase; color: var(--ink2);
 }
 .card-tag {
-  font-size: 9px; font-weight: 600; color: var(--ink3); letter-spacing: 0.5px;
+  font-size: 12px; font-weight: 600; color: var(--ink3); letter-spacing: 0.5px;
 }
 .card-body { padding: 18px; }
 
@@ -240,11 +240,11 @@ body {
 }
 .cand-name-wrap { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
 .cand-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-bottom: 1px; }
-.cand-name { font-size: 12px; font-weight: 700; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.cand-party { font-size: 9px; font-weight: 500; color: var(--ink3); white-space: nowrap; }
+.cand-name { font-size: 15px; font-weight: 700; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cand-party { font-size: 12px; font-weight: 500; color: var(--ink3); white-space: nowrap; }
 .cand-right { display: flex; align-items: baseline; gap: 6px; flex-shrink: 0; }
-.cand-pct { font-size: 14px; font-weight: 800; letter-spacing: -0.5px; }
-.cand-ci { font-size: 9px; font-weight: 500; color: var(--ink3); }
+.cand-pct { font-size: 17px; font-weight: 800; letter-spacing: -0.5px; }
+.cand-ci { font-size: 12px; font-weight: 500; color: var(--ink3); }
 
 .bar-track {
   height: 6px; background: var(--border);
@@ -276,9 +276,9 @@ body {
   position: absolute; bottom: 0; left: 0;
   height: 3px; border-radius: 0 0 5px 5px;
 }
-.p2v-name { font-size: 11px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
-.p2v-pct { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; line-height: 1; }
-.p2v-sub { font-size: 9px; font-weight: 500; color: var(--ink3); margin-top: 3px; }
+.p2v-name { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.p2v-pct { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; line-height: 1; }
+.p2v-sub { font-size: 12px; font-weight: 500; color: var(--ink3); margin-top: 3px; }
 
 /* ── CANVAS ── */
 canvas { display: block; width: 100%; }
@@ -295,11 +295,11 @@ canvas { display: block; width: 100%; }
   padding: 14px; background: var(--surface2);
 }
 .scen-pair {
-  font-size: 10px; font-weight: 600; color: var(--ink3);
+  font-size: 13px; font-weight: 600; color: var(--ink3);
   margin-bottom: 6px; display: flex; align-items: center; gap: 5px;
 }
-.scen-pct { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; color: var(--ink); }
-.scen-lbl { font-size: 9px; font-weight: 500; color: var(--ink3); margin-top: 2px; }
+.scen-pct { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; color: var(--ink); }
+.scen-lbl { font-size: 12px; font-weight: 500; color: var(--ink3); margin-top: 2px; }
 .scen-top { border-color: #2c3347; border-left: 3px solid #2c3347; }
 .scen-top .scen-pct { color: #2c3347; }
 
@@ -309,7 +309,7 @@ canvas { display: block; width: 100%; }
   font-size: 11px;
 }
 .data-table th {
-  font-size: 8px; font-weight: 700; letter-spacing: 1.5px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
   text-transform: uppercase; color: var(--ink3);
   padding: 7px 10px; border-bottom: 2px solid var(--border);
   text-align: left; background: var(--surface2);
@@ -320,13 +320,14 @@ canvas { display: block; width: 100%; }
   border-bottom: 1px solid var(--border);
   font-weight: 500; color: var(--ink2);
   vertical-align: middle;
+  font-size: 14px;
 }
 .data-table tr:last-child td { border-bottom: none; }
 .data-table tr:hover td { background: var(--surface2); }
-.t-source { font-weight: 700; color: var(--ink); font-size: 11px; }
-.t-method { font-size: 9px; color: var(--ink3); }
+.t-source { font-weight: 700; color: var(--ink); font-size: 14px; }
+.t-method { font-size: 12px; color: var(--ink3); }
 .stars { letter-spacing: -1px; font-size: 12px; }
-.rigor-pct { font-size: 9px; font-weight: 700; color: var(--ink3); margin-left: 3px; }
+.rigor-pct { font-size: 12px; font-weight: 700; color: var(--ink3); margin-left: 3px; }
 
 /* ── METHOD GRID ── */
 .method-grid {
@@ -339,14 +340,14 @@ canvas { display: block; width: 100%; }
   width: 26px; height: 26px; border-radius: 4px;
   background: var(--navy); color: rgba(255,255,255,0.65);
   display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 800; flex-shrink: 0;
+  font-size: 14px; font-weight: 800; flex-shrink: 0;
 }
-.method-text h4 { font-size: 11px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
-.method-text p { font-size: 10px; font-weight: 400; color: var(--ink3); line-height: 1.55; }
+.method-text h4 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+.method-text p { font-size: 13px; font-weight: 400; color: var(--ink3); line-height: 1.55; }
 
 /* ── DIVIDER ── */
 .section-label {
-  font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
+  font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
   text-transform: uppercase; color: var(--ink3);
   margin: 20px 0 10px; padding-bottom: 6px;
   border-bottom: 1px solid var(--border);
@@ -364,11 +365,11 @@ canvas { display: block; width: 100%; }
   align-items: flex-start; gap: 20px; flex-wrap: wrap;
 }
 .footer-note {
-  font-size: 9px; font-weight: 500;
+  font-size: 12px; font-weight: 500;
   color: rgba(255,255,255,0.3); line-height: 1.8; max-width: 780px;
 }
 .footer-note strong { color: rgba(255,255,255,0.5); }
-.footer-sig { font-size: 9px; font-weight: 600; color: rgba(255,255,255,0.25); text-align: right; line-height: 1.8; }
+.footer-sig { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.25); text-align: right; line-height: 1.8; }
 .footer-sig strong { color: rgba(255,255,255,0.5); font-size: 10px; display: block; }
 
 /* ── TICKER ── */
@@ -376,8 +377,8 @@ canvas { display: block; width: 100%; }
   background: #f4f5f7; border: 1px solid #d8dce4;
   border-radius: 5px; padding: 9px 14px;
   display: flex; align-items: center; gap: 10px;
-  margin-bottom: 16px; font-size: 10px; font-weight: 600;
-  color: #3a4155;
+  margin-bottom: 16px; font-size: 13px; font-weight: 600;
+  color: #000000;
 }
 .ticker-dot {
   width: 7px; height: 7px; border-radius: 50%;

@@ -547,6 +547,56 @@ canvas { display: block; width: 100%; }
 .fade-in { animation: fadeIn 0.4s ease forwards; }
 @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
 
+/* ── MODAL DISCLAIMER ── */
+#disclaimer-modal {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 9998;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+#disclaimer-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+.disclaimer-content {
+  background: var(--surface);
+  border-radius: 8px;
+  padding: 32px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+.disclaimer-title {
+  font-size: 20px; font-weight: 800; color: var(--ink);
+  margin-bottom: 16px; letter-spacing: -0.5px;
+}
+.disclaimer-text {
+  font-size: 14px; line-height: 1.8; color: var(--ink2);
+  margin-bottom: 20px;
+}
+.disclaimer-text strong {
+  font-weight: 700; color: var(--ink);
+}
+.disclaimer-button {
+  background: var(--navy); color: white;
+  border: none; border-radius: 4px;
+  padding: 12px 24px; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s;
+  letter-spacing: 0.5px;
+}
+.disclaimer-button:hover {
+  background: var(--navy2);
+}
+@media(max-width:600px){
+  .disclaimer-content { padding: 24px; }
+  .disclaimer-title { font-size: 18px; }
+  .disclaimer-text { font-size: 13px; }
+}
+
 </style>
 </head>
 <body>
@@ -843,6 +893,17 @@ canvas { display: block; width: 100%; }
   </div>
 
 </div><!-- /dashboard -->
+
+<!-- DISCLAIMER MODAL -->
+<div id="disclaimer-modal">
+  <div class="disclaimer-content">
+    <div class="disclaimer-title">Advertencia importante</div>
+    <div class="disclaimer-text">
+      Este documento es un ejercicio de análisis cuantitativo basado en encuestas publicadas. Los resultados representan distribuciones de probabilidad, no predicciones determinísticas. Las encuestas tienen márgenes de error propios. Los resultados electorales pueden verse afectados por factores no capturados en las encuestas.
+    </div>
+    <button class="disclaimer-button" onclick="document.getElementById('disclaimer-modal').classList.remove('active')">Entendido</button>
+  </div>
+</div>
 
 <script>
 // ══════════════════════════════════════════════════
@@ -1246,6 +1307,7 @@ async function main(){
 
   document.getElementById('loading-screen').style.display='none';
   document.getElementById('dashboard').style.display='block';
+  document.getElementById('disclaimer-modal').classList.add('active');
 
   renderBars(results,10000);
   renderP2V(results,10000);
